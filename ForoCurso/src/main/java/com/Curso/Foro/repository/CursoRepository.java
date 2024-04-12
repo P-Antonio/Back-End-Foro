@@ -12,9 +12,10 @@ import java.util.List;
 
 @Repository
 public interface CursoRepository extends JpaRepository<Curso, Long> {
-
-	//@Query ("SELECT c FROM Cursos c WHERE c.nombre = nombre")
+	
 	Page<Curso> findAllByNombreIsTrue (Pageable pagination);
+	
+	List<Curso> findByTopicosId (Long topicosId);
 
 	
 }

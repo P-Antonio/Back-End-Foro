@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.Curso.Foro.client.TopicoClient;
 import com.Curso.Foro.entity.ActualizarCurso;
 import com.Curso.Foro.entity.Curso;
 import com.Curso.Foro.entity.DatosCurso;
@@ -27,6 +29,8 @@ public class CursoController {
 	 @Autowired
 	 private CursoRepository cursoRepository;
 	 
+	 @Autowired
+	 private TopicoClient topicoClient;
 	 
 	 @PostMapping
 	 @Transactional
@@ -52,4 +56,14 @@ public class CursoController {
 		 return ResponseEntity.ok(listado);
 	 }
 	 
+	 @GetMapping ("/topico{cursoId}")
+	 private ResponseEntity<?> cursoByIdTopico (@PathVariable Long idTopico){
+		 var topico = cursoRepository.findByTopicosId(idTopico);
+		 return ResponseEntity.ok(topico);
+	 }
+	 
+	 @GetMapping ("/findTopico(cursoId)")
+	 public ResponseEntity<?> obtenerTopicoByCursoId(@PathVariable Long cursoId){
+		 return ResponseEntity.ok(topicoClient.findAllTopicoByCursoId(cursoId));
+	 }
 }

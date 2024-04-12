@@ -85,4 +85,10 @@ public class TopicoController {
 		return ResponseEntity.ok(topicoService.findRespuestaByIdTopico(idTopico));
 	}
 	
+	@GetMapping ("curso{idCurso}")
+	public ResponseEntity<?> obtenerCursoById (@PathVariable Long idCurso){
+		var curso = topicosRepository.findByCursoId(idCurso);
+		return ResponseEntity.ok(curso);
+	}
+	
 }
