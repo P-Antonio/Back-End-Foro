@@ -4,9 +4,9 @@ spring:
   application:
     name: mcsv-ForoCurso
   datasource:
-    driver-class-name: com.posgreesql.Driver
-    url: jdbc:postgresql://localhost:5432/Foro
-    username: root
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ForoCurso
+    username: postgres
     password: root1234
   jpa:
      hibernate:
